@@ -1,379 +1,938 @@
-<!doctype html>
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Teacher's Day — Miss Alina</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Teacher's Day — Miss Alina</title>
 
 <style>
-*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&display=swap');
 
-body{
-  margin:0;
-  background:#000;
-  font-family:Arial,sans-serif;
-  color:#3d3840;
+:root {
+  --ink: #28213b;
+  --pink: #f06b99;
+  --paper: #fffaf1;
+  --muted: #746d7c;
 }
 
-.app{
-  width:min(100%,430px);
-  min-height:100vh;
-  margin:auto;
-  background:#fbf7ee;
-  position:relative;
-  overflow:hidden;
+* {
+  box-sizing: border-box;
 }
 
-.screen{
-  min-height:100vh;
-  padding:42px 24px 30px;
-  display:none;
-  animation:in .7s ease;
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: 'DM Sans', Arial, sans-serif;
+  color: var(--ink);
 }
 
-.screen.active{display:block}
-
-.intro{
-  background:#050505;
-  color:#eee;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+body {
+  background: #090d1a;
 }
 
-.intro.active{display:flex}
-
-.intro small{font-size:18px}
-
-.intro h1{
-  font-size:48px;
-  line-height:.95;
-  margin:12px 0;
-  color:#e9879d;
-  text-shadow:0 2px 0 #3c1721;
+button {
+  font: inherit;
 }
 
-.intro p{
-  font-size:22px;
-  margin:0;
+.app {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
 }
 
-.paper{
-  background:#fbf7ee;
-  background-image:
-    linear-gradient(#eadfd0 1px,transparent 1px),
-    linear-gradient(90deg,#eadfd0 1px,transparent 1px);
-  background-size:28px 28px;
+.screen {
+  display: none;
+  min-height: 100vh;
+  width: 100%;
+  padding: clamp(22px, 4vw, 56px);
+  position: relative;
+  isolation: isolate;
+  animation: appear .55s ease both;
 }
 
-.top{text-align:center}
-
-.top h1{
-  font-size:40px;
-  margin:0 0 12px;
+.screen.active {
+  display: flex;
+  flex-direction: column;
 }
 
-.sub{
-  background:#fff0f3;
-  border:1px solid #f1cbd5;
-  border-radius:35px;
-  padding:16px 20px;
-  font-size:18px;
-  color:#d46683;
-  font-style:italic;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-  margin-top:28px;
-}
-
-.tile{
-  min-height:190px;
-  border-radius:22px;
-  padding:26px 18px;
-  text-align:center;
-  box-shadow:0 5px 14px #00000012;
-  cursor:pointer;
-  transition:.2s;
-  border:1px solid #fff;
-}
-
-.tile:active{transform:scale(.96)}
-
-.pink{background:#fff0f2}
-.mint{background:#e6faf3}
-.yellow{background:#fff4b9}
-.blue{background:#dceefd}
-
-.tile b{
-  display:block;
-  font-size:18px;
-  line-height:1.45;
-  margin-top:30px;
-}
-
-.icon{
-  font-size:42px;
-  margin-top:12px;
-}
-
-.lesson{
-  font-size:13px;
-  background:#fff;
-  border-radius:20px;
-  padding:8px 13px;
-  display:inline-block;
-  font-weight:bold;
-}
-
-.hint{
-  margin:24px auto 0;
-  background:#fff;
-  border:1px solid #ead7dc;
-  border-radius:30px;
-  padding:15px;
-  text-align:center;
-  font-style:italic;
-  color:#777;
-}
-
-.page2{text-align:center}
-
-.page2 h1{font-size:38px}
-
-.message{
-  font-size:21px;
-  line-height:1.7;
-  margin-top:35px;
-}
-
-.quote{
-  background:#fff0f3;
-  border-radius:25px;
-  padding:22px;
-  margin-top:28px;
-  color:#b65070;
-  font-style:italic;
-}
-
-.name{
-  margin-top:35px;
-  font-weight:bold;
-  font-size:19px;
-}
-
-.next{
-  margin-top:25px;
-  border:0;
-  background:#d86f8a;
-  color:#fff;
-  border-radius:28px;
-  padding:13px 22px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-.back{
-  position:absolute;
-  bottom:18px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#fff;
-  border:1px solid #ddd;
-  border-radius:25px;
-  padding:10px 18px;
-}
-
-@keyframes in{
-  from{
-    opacity:0;
-    transform:translateY(15px)
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
   }
-  to{
-    opacity:1;
-    transform:none
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bg-dots {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(#e9a5b6 1px, transparent 1px);
+  background-size: 25px 25px;
+  opacity: .28;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #ffffffaa;
+  background: #ffffffb8;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #322b46;
+  cursor: pointer;
+  box-shadow: 0 5px 18px #31223a12;
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+}
+
+.counter {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+
+.main {
+  width: min(100%, 1040px);
+  margin: auto;
+  text-align: center;
+}
+
+.script {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+}
+
+.kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  font-weight: 700;
+  color: #b75d7e;
+}
+
+h1, h2, p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(38px, 6vw, 76px);
+  line-height: 1.12;
+  margin-bottom: 14px;
+}
+
+h2 {
+  font-size: clamp(30px, 4.5vw, 54px);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.lead {
+  font-size: clamp(16px, 2vw, 21px);
+  line-height: 1.7;
+  color: #5c5667;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.pink-text {
+  color: var(--pink);
+}
+
+.primary {
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #f36c9a, #c94f88);
+  color: white;
+  padding: 15px 27px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px #dc659044;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px #dc659055;
+}
+
+.primary:active {
+  transform: scale(.98);
+}
+
+.soft-btn {
+  border: 1px solid #ead4dc;
+  background: #fffafc;
+  color: #7f4a64;
+  border-radius: 999px;
+  padding: 12px 21px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* WELCOME */
+
+.welcome {
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    #27334b 0,
+    #11192c 46%,
+    #080d19 100%
+  );
+  color: white;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.welcome:before,
+.final:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 15% 18%, #f5a0bd33 0 2px, transparent 3px),
+    radial-gradient(circle at 85% 24%, #f5a0bd55 0 2px, transparent 3px),
+    radial-gradient(circle at 18% 80%, #f5a0bd55 0 2px, transparent 3px),
+    radial-gradient(circle at 76% 83%, #f5a0bd44 0 2px, transparent 3px);
+}
+
+.welcome .topbar,
+.final .topbar {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  color: white;
+}
+
+.welcome .counter,
+.final .counter {
+  color: #d6cbd8;
+}
+
+.welcome .icon-btn,
+.final .icon-btn {
+  background: #ffffff18;
+  color: white;
+  border-color: #ffffff30;
+}
+
+.welcome .main {
+  max-width: 850px;
+}
+
+.welcome h1 {
+  font-size: clamp(50px, 9vw, 112px);
+  text-shadow: 0 8px 35px #ed6b9a22;
+}
+
+.welcome .kicker {
+  color: #f8abc4;
+}
+
+.welcome .lead {
+  color: #e4dce6;
+}
+
+.welcome .hero-flower {
+  font-size: clamp(48px, 7vw, 78px);
+  margin-bottom: 20px;
+  filter: drop-shadow(0 8px 20px #f06b9955);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-9px) rotate(4deg);
+  }
+}
+
+.welcome .primary {
+  margin-top: 30px;
+}
+
+.welcome .signature {
+  position: absolute;
+  bottom: 26px;
+  right: clamp(22px, 5vw, 70px);
+  font-family: 'Pacifico';
+  font-size: 18px;
+  color: #f2a8bf;
+}
+
+/* LESSON MENU */
+
+.hub {
+  background: linear-gradient(
+    145deg,
+    #fff9f2,
+    #fff0f4 65%,
+    #f4f0ff
+  );
+}
+
+.hub .main {
+  max-width: 1050px;
+}
+
+.hub h2 {
+  color: #4c2751;
+}
+
+.hub .lead {
+  background: #fff9;
+  border: 1px solid #f3dce3;
+  border-radius: 22px;
+  padding: 13px 22px;
+  font-size: 16px;
+}
+
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 30px auto 20px;
+  width: 100%;
+}
+
+.lesson-card {
+  --accent: #e66b98;
+  --tint: #fff0f4;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  background: var(--tint);
+  min-height: 118px;
+  box-shadow: 0 8px 22px #35203a0c;
+  cursor: pointer;
+  transition: .22s;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-card:after {
+  content: '↗';
+  position: absolute;
+  right: 15px;
+  bottom: 12px;
+  color: var(--accent);
+  font-size: 19px;
+}
+
+.lesson-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px #35203a17;
+}
+
+.lesson-card .emoji {
+  font-size: 32px;
+  flex: none;
+}
+
+.lesson-card .num {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.lesson-card strong {
+  font-size: 17px;
+  display: block;
+}
+
+.lesson-card small {
+  display: block;
+  color: #746d7c;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 4px;
+  padding-right: 10px;
+}
+
+.lesson-card:nth-child(2) {
+  --accent: #4d996d;
+  --tint: #edf9ef;
+}
+
+.lesson-card:nth-child(3) {
+  --accent: #d28a19;
+  --tint: #fff7dc;
+}
+
+.lesson-card:nth-child(4) {
+  --accent: #4b83ce;
+  --tint: #edf5ff;
+}
+
+.lesson-card:nth-child(5) {
+  --accent: #9a6bc9;
+  --tint: #f5efff;
+}
+
+.lesson-card:nth-child(6) {
+  --accent: #239a9a;
+  --tint: #e9f9f7;
+}
+
+.lesson-card:nth-child(7) {
+  --accent: #d16b42;
+  --tint: #fff1e8;
+}
+
+.lesson-card:nth-child(8) {
+  --accent: #bd5796;
+  --tint: #fff0fa;
+}
+
+.hub-foot {
+  color: #8a7180;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* LESSON PAGES */
+
+.lesson-screen {
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.lesson-screen:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  right: -170px;
+  top: -210px;
+  background: #ffffff70;
+}
+
+.lesson-screen .topbar {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+}
+
+.lesson-screen .main {
+  max-width: 800px;
+}
+
+.lesson-screen .lesson-number {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 9px 17px;
+  background: #ffffffa8;
+  border: 1px solid #ffffff;
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.lesson-screen .big-emoji {
+  font-size: clamp(62px, 9vw, 100px);
+  margin: 15px 0 22px;
+  display: block;
+  filter: drop-shadow(0 8px 8px #00000012);
+  animation: float 3s ease-in-out infinite;
+}
+
+.lesson-screen .lesson-title {
+  font-size: clamp(40px, 7vw, 72px);
+  margin-bottom: 10px;
+}
+
+.lesson-screen .lesson-line {
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 600;
+  color: #595265;
+}
+
+.lesson-screen .lesson-copy {
+  max-width: 690px;
+  margin: 30px auto 0;
+  padding: clamp(20px, 3vw, 34px);
+  border-radius: 24px;
+  background: #ffffffa8;
+  border: 1px solid #ffffff;
+  box-shadow: 0 12px 35px #32213a0c;
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.8;
+  color: #484253;
+}
+
+.lesson-screen .tiny-note {
+  font-family: 'Pacifico';
+  font-size: 18px;
+  margin: 24px 0;
+  color: var(--accent);
+}
+
+.lesson-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.lesson-1 {
+  --accent: #d84f83;
+  background: linear-gradient(145deg, #fff3f6, #fce0eb);
+}
+
+.lesson-2 {
+  --accent: #42885c;
+  background: linear-gradient(145deg, #f0fff2, #dff3e4);
+}
+
+.lesson-3 {
+  --accent: #bf8219;
+  background: linear-gradient(145deg, #fffbea, #ffefc4);
+}
+
+.lesson-4 {
+  --accent: #3e78bd;
+  background: linear-gradient(145deg, #f2f8ff, #dcecff);
+}
+
+.lesson-5 {
+  --accent: #9261bf;
+  background: linear-gradient(145deg, #faf4ff, #eee2ff);
+}
+
+.lesson-6 {
+  --accent: #218e8a;
+  background: linear-gradient(145deg, #f0fffc, #d9f5f0);
+}
+
+.lesson-7 {
+  --accent: #cb6944;
+  background: linear-gradient(145deg, #fff8f0, #ffe7d7);
+}
+
+.lesson-8 {
+  --accent: #bd5796;
+  background: linear-gradient(145deg, #fff4fc, #f6e0f2);
+}
+
+/* FINAL PAGE */
+
+.final {
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    #2b3048,
+    #11172a 65%,
+    #080d19
+  );
+  color: #fff;
+  justify-content: center;
+}
+
+.final .main {
+  max-width: 850px;
+}
+
+.final h2 {
+  font-size: clamp(40px, 7vw, 78px);
+  color: #f17ca5;
+}
+
+.final .lead {
+  color: #eee2ec;
+}
+
+.final .quote {
+  max-width: 650px;
+  margin: 25px auto;
+  padding: 23px;
+  border-radius: 22px;
+  background: #ffffff12;
+  border: 1px solid #ffffff25;
+  color: #f7dce8;
+  font-family: 'Pacifico';
+  font-size: clamp(17px, 2vw, 23px);
+  line-height: 1.6;
+}
+
+.final .signature {
+  font-family: 'Pacifico';
+  color: #f2a8bf;
+  font-size: 22px;
+  margin: 25px 0;
+}
+
+.final .primary {
+  margin-top: 8px;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #0000000c;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #f06b99, #a879dc);
+  transition: width .3s;
+}
+
+/* MOBILE */
+
+@media(max-width:760px) {
+  .lesson-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+  }
+
+  .lesson-card {
+    padding: 15px;
+    min-height: 105px;
+    gap: 10px;
+  }
+
+  .lesson-card .emoji {
+    font-size: 27px;
+  }
+
+  .lesson-card strong {
+    font-size: 15px;
+  }
+
+  .lesson-card small {
+    font-size: 11px;
+  }
+
+  .screen {
+    padding: 26px 18px;
+  }
+
+  .lesson-screen .topbar {
+    width: calc(100% - 36px);
+  }
+}
+
+@media(max-width:420px) {
+  .lesson-grid {
+    gap: 9px;
+  }
+
+  .lesson-card {
+    padding: 12px;
+    min-height: 98px;
+  }
+
+  .lesson-card .emoji {
+    font-size: 23px;
+  }
+
+  .lesson-card strong {
+    font-size: 14px;
+  }
+
+  .lesson-card small {
+    font-size: 10px;
+  }
+
+  .lesson-card:after {
+    right: 8px;
+    bottom: 7px;
+    font-size: 15px;
+  }
+
+  .hub .lead {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .welcome .signature {
+    font-size: 15px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
-<!-- INTRO -->
-<section id="intro" class="screen intro active">
-  <div>
-    <small>When you want to make</small>
-
-    <h1>Teacher's Day</h1>
-
-    <p>special for her</p>
-
-    <button class="next" onclick="go('lessons')">
-      Open your surprise ✨
-    </button>
+<!-- WELCOME -->
+<section class="screen welcome active" id="welcome">
+  <div class="topbar">
+    <button class="icon-btn" aria-label="Home" onclick="go('welcome')">⌂</button>
+    <span class="counter">01 / 08</span>
+    <button class="icon-btn" aria-label="Next" onclick="go('hub')">›</button>
   </div>
+
+  <div class="main">
+    <div class="hero-flower">🌷 ✨</div>
+    <div class="kicker">A little surprise made with love</div>
+    <h1 class="script"><span class="pink-text">Teacher's Day</span><br>for her</h1>
+    <p class="lead">For the teacher who makes every lesson brighter and every day a little more special.</p>
+    <button class="primary" onclick="go('hub')">Open your surprise ✨ →</button>
+  </div>
+
+  <div class="signature">For Miss Alina ♡</div>
+  <div class="progress"><span style="width:12.5%"></span></div>
 </section>
 
-
-<!-- LESSONS -->
-<section id="lessons" class="screen paper">
-
-  <div class="top">
-    <h1>Today's Lesson</h1>
-
-    <div class="sub">
-      Some of the most beautiful things I've learned from you.
-    </div>
+<!-- LESSON MENU -->
+<section class="screen hub" id="hub">
+  <div class="bg-dots"></div>
+  <div class="topbar">
+    <button class="icon-btn" aria-label="Home" onclick="go('welcome')">⌂</button>
+    <span class="counter">02 / 08</span>
+    <button class="icon-btn" aria-label="Next" onclick="go('lesson1')">›</button>
   </div>
 
+  <div class="main">
+    <div class="kicker">A few things you taught me</div>
+    <h2 class="script">Today's Lessons <span class="pink-text">♡</span></h2>
+    <p class="lead">Some of the most beautiful things I've learned from you.</p>
 
-  <div class="grid">
+    <div class="lesson-grid">
+      <button class="lesson-card" onclick="go('lesson1')">
+        <span class="emoji">💗</span>
+        <span><span class="num">LESSON 01</span><strong>Kindness</strong><small>A gentle heart can change a day.</small></span>
+      </button>
 
-    <div class="tile pink" onclick="show('Kindness')">
-      <span class="lesson">Lesson 01</span>
-      <div class="icon">🌷</div>
-      <b>Kindness</b>
+      <button class="lesson-card" onclick="go('lesson2')">
+        <span class="emoji">🌱</span>
+        <span><span class="num">LESSON 02</span><strong>Patience</strong><small>Every little step matters.</small></span>
+      </button>
+
+      <button class="lesson-card" onclick="go('lesson3')">
+        <span class="emoji">☀️</span>
+        <span><span class="num">LESSON 03</span><strong>Happiness</strong><small>Find joy in little things.</small></span>
+      </button>
+
+      <button class="lesson-card" onclick="go('lesson4')">
+        <span class="emoji">⭐</span>
+        <span><span class="num">LESSON 04</span><strong>Confidence</strong><small>Believe in your own light.</small></span>
+      </button>
+
+      <button class="lesson-card" onclick="go('lesson5')">
+        <span class="emoji">🎨</span>
+        <span><span class="num">LESSON 05</span><strong>Creativity</strong><small>There is more than one way.</small></span>
+      </button>
+
+      <button class="lesson-card" onclick="go('lesson6')">
+        <span class="emoji">🤝</span>
+        <span><span class="num">LESSON 06</span><strong>Support</strong><small>Kind words help us grow.</small></span>
+      </button>
     </div>
 
-
-    <div class="tile mint" onclick="show('Patience')">
-      <span class="lesson">Lesson 02</span>
-      <div class="icon">🌱</div>
-      <b>Patience</b>
-    </div>
-
-
-    <div class="tile yellow" onclick="show('Happiness')">
-      <span class="lesson">Lesson 03</span>
-      <div class="icon">😊</div>
-      <b>Happiness</b>
-    </div>
-
-
-    <div class="tile blue" onclick="show('Us')">
-      <span class="lesson">Lesson 04</span>
-      <div class="icon">🤝</div>
-      <b>Us</b>
-    </div>
-
+    <div class="hub-foot">Tap a lesson to open its little message 💌</div>
+    <button class="soft-btn" style="margin-top:15px" onclick="go('lesson1')">Start the lessons →</button>
   </div>
 
-
-  <div class="hint">
-    Tap on a lesson to see what I learned 💗
-  </div>
-
-
-  <button class="next" onclick="go('letter')">
-    Continue to my message →
-  </button>
-
+  <div class="progress"><span style="width:25%"></span></div>
 </section>
 
-
-<!-- LETTER -->
-<section id="letter" class="screen paper page2">
-
-  <h1>A Note For You 💌</h1>
-
-  <div class="sub">
-    Happy Teacher's Day, Miss Alina!
+<!-- LESSON 1 -->
+<section class="screen lesson-screen lesson-1" id="lesson1">
+  <div class="topbar">
+    <button class="icon-btn" aria-label="Home" onclick="go('hub')">⌂</button>
+    <span class="counter">03 / 08</span>
+    <button class="icon-btn" aria-label="Next" onclick="go('lesson2')">›</button>
   </div>
 
-
-  <p class="message">
-    Thank you for teaching me with patience,
-    encouraging me to keep learning,
-    and making every lesson feel special.
-  </p>
-
-
-  <div class="quote">
-    “A great teacher leaves a little bit of light
-    in every student's heart.”
+  <div class="main">
+    <span class="lesson-number">LESSON 01</span>
+    <h2 class="lesson-title script">Kindness <span>♡</span></h2>
+    <p class="lesson-line">A kind heart makes the world softer.</p>
+    <span class="big-emoji">💗</span>
+    <div class="lesson-copy">You taught me that kindness is never a small thing. A gentle word, a patient smile, or helping someone can make a big difference. Your kindness reminds me to treat everyone with care and respect.</div>
+    <div class="tiny-note">Thank you for your warm heart ♡</div>
+    <div class="lesson-actions">
+      <button class="soft-btn" onclick="go('hub')">All lessons</button>
+      <button class="primary" onclick="go('lesson2')">Next lesson →</button>
+    </div>
   </div>
-
-
-  <div class="name">
-    With respect & love,<br>
-    Abdullah bin Zaheer
-  </div>
-
-
-  <button class="next" onclick="go('final')">
-    One last thing ❤️
-  </button>
-
+  <div class="progress"><span style="width:37.5%"></span></div>
 </section>
 
+<!-- LESSON 2 -->
+<section class="screen lesson-screen lesson-2" id="lesson2">
+  <div class="topbar">
+    <button class="icon-btn" aria-label="Home" onclick="go('hub')">⌂</button>
+    <span class="counter">04 / 08</span>
+    <button class="icon-btn" aria-label="Next" onclick="go('lesson3')">›</button>
+  </div>
+
+  <div class="main">
+    <span class="lesson-number">LESSON 02</span>
+    <h2 class="lesson-title script">Patience <span>🌿</span></h2>
+    <p class="lesson-line">Growing takes time, and that's okay.</p>
+    <span class="big-emoji">🌱</span>
+    <div class="lesson-copy">You never make learning feel like a race. You explain, guide, and encourage us to try again. From you, I learned that mistakes are part of learning and that every small effort helps us grow.</div>
+    <div class="tiny-note">Your patience helps me bloom ♡</div>
+    <div class="lesson-actions">
+      <button class="soft-btn" onclick="go('lesson1')">← Previous</button>
+      <button class="primary" onclick="go('lesson3')">Next lesson →</button>
+    </div>
+  </div>
+  <div class="progress"><span style="width:50%"></span></div>
+</section>
+
+<!-- LESSON 3 -->
+<section class="screen lesson-screen lesson-3" id="lesson3">
+  <div class="topbar">
+    <button class="icon-btn" aria-label="Home" onclick="go('hub')">⌂</button>
+    <span class="counter">05 / 08</span>
+    <button class="icon-btn" aria-label="Next" onclick="go('lesson4')">›</button>
+  </div>
+
+  <div class="main">
+    <span class="lesson-number">LESSON 03</span>
+    <h2 class="lesson-title script">Happiness <span>☀️</span></h2>
+    <p class="lesson-line">A little joy can brighten everything.</p>
+    <span class="big-emoji">🌞</span>
+    <div class="lesson-copy">You bring positivity into the classroom and make learning feel special. Your smile and cheerful spirit remind me that even an ordinary day can hold something wonderful. You have taught me to look for the good in every day.</div>
+    <div class="tiny-note">You make learning brighter ♡</div>
+    <div class="lesson-actions">
+      <button class="soft-btn" onclick="go('lesson2')">← Previous</button>
+      <button class="primary" onclick="go('lesson4')">Next lesson →</button>
+    </div>
+  </div>
+  <div class="progress"><span style="width:62.5%"></span></div>
+</section>
+
+<!-- LESSON 4 -->
+<section class="screen lesson-screen lesson-4" id="lesson4">
+  <div class="topbar">
+    <button class="icon-btn" aria-label="Home" onclick="go('hub')">⌂</button>
+    <span class="counter">06 / 08</span>
+    <button class="icon-btn" aria-label="Next" onclick="go('lesson5')">›</button>
+  </div>
+
+  <div class="main">
+    <span class="lesson-number">LESSON 04</span>
+    <h2 class="lesson-title script">Confidence <span>⭐</span></h2>
+    <p class="lesson-line">Believe in yourself and keep trying.</p>
+    <span class="big-emoji">🌟</span>
+    <div class="lesson-copy">Your encouragement helps me believe that I can do more than I think. You remind me that learning is about trying, improving, and never giving up on myself. I will carry that confidence with me wherever I go.</div>
+    <div class="tiny-note">Thank you for believing in us ♡</div>
+    <div class="lesson-actions">
+      <button class="soft-btn" onclick="go('lesson3')">← Previous</button>
+      <button class="primary" onclick="go('lesson5')">Next lesson →</button>
+    </div>
+  </div>
+  <div class="progress"><span style="width:75%"></span></div>
+</section>
+
+<!-- LESSON 5 -->
+<section class="screen lesson-screen lesson-5" id="lesson5">
+  <div class="topbar">
+    <button class="icon-btn" aria-label="Home" onclick="go('hub')">⌂</button>
+    <span class="counter">07 / 08</span>
+    <button class="icon-btn" aria-label="Next" onclick="go('final')">›</button>
+  </div>
+
+  <div class="main">
+    <span class="lesson-number">LESSON 05</span>
+    <h2 class="lesson-title script">Creativity <span>🎨</span></h2>
+    <p class="lesson-line">Every mind has its own beautiful ideas.</p>
+    <span class="big-emoji">🪄</span>
+    <div class="lesson-copy">You show me that there can be many ways to solve a problem and many ways to express an idea. You encourage curiosity and help us discover new things. Because of you, I feel excited to keep exploring and learning.</div>
+    <div class="tiny-note">Thank you for inspiring imagination ♡</div>
+    <div class="lesson-actions">
+      <button class="soft-btn" onclick="go('lesson4')">← Previous</button>
+      <button class="primary" onclick="go('final')">My final note →</button>
+    </div>
+  </div>
+  <div class="progress"><span style="width:87.5%"></span></div>
+</section>
 
 <!-- FINAL -->
-<section id="final" class="screen intro">
-
-  <div>
-
-    <div style="font-size:70px">
-      🌷
-    </div>
-
-    <h1 style="font-size:42px">
-      Happy Teacher's Day
-    </h1>
-
-    <p>
-      Miss Alina
-    </p>
-
-    <p style="margin-top:30px;font-size:18px">
-      Thank you for being a wonderful teacher.
-    </p>
-
-    <p style="margin-top:25px;color:#e9879d">
-      — Abdullah bin Zaheer
-    </p>
-
-
-    <button class="next" onclick="go('lessons')">
-      Read again ↻
-    </button>
-
+<section class="screen final" id="final">
+  <div class="topbar">
+    <button class="icon-btn" aria-label="Home" onclick="go('welcome')">⌂</button>
+    <span class="counter">08 / 08</span>
+    <button class="icon-btn" aria-label="Back to lessons" onclick="go('hub')">‹</button>
   </div>
 
+  <div class="main">
+    <div class="hero-flower">🌷 💐 🌷</div>
+    <div class="kicker">A little note from the heart</div>
+    <h2 class="script">Happy Teacher's Day,<br><span>Miss Alina</span> ♡</h2>
+    <p class="lead">Thank you for teaching me with patience, encouraging me to keep learning, and making every lesson feel special.</p>
+    <div class="quote">“A great teacher leaves a little bit of light in every student's heart.”</div>
+    <p class="lead">Thank you for being a wonderful teacher. Your lessons will stay with me long after the classroom.</p>
+    <div class="signature">With respect &amp; love,<br>From Abdullah ♡</div>
+    <button class="primary" onclick="go('welcome')">Read again ↻</button>
+  </div>
+
+  <div class="progress"><span style="width:100%"></span></div>
 </section>
 
 </div>
 
-
 <script>
+function go(id) {
+  const target = document.getElementById(id);
 
-function go(id){
+  if (!target) return;
 
-  document
-    .querySelectorAll('.screen')
-    .forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
 
-  document
-    .getElementById(id)
-    .classList.add('active');
-
-  window.scrollTo(0,0);
+  target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-
-function show(x){
-
-  alert(
-    'Lesson learned: ' + x + ' 💗'
-  );
-
-}
-
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    go('hub');
+  }
+});
 </script>
-
 </body>
 </html>
